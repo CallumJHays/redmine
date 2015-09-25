@@ -3,7 +3,7 @@ class ExampleController < ApplicationController
   unloadable
 
   layout 'base'
-  before_filter :find_project, :authorize
+  before_filter :define_project_and_user, :authorize
   menu_item :sample_plugin
 
   def say_hello

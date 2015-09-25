@@ -1,0 +1,28 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'localforage', :plugin => 'map' %>
+    <%= javascript_include_tag 'async.min', :plugin => 'map' %>
+
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+                $("input[type=submit]").click(function (e) {
+                    e.preventDefault();
+
+                    async.series([
+                        function (clb) {
+                            localforage.setItem('redmine_username', $("#username").val(), clb);
+                        },
+                        function (clb) {
+                            localforage.setItem('redmine_password', $("#password").val(), clb);
+                        }
+                    ], function (err) {
+                        if (err) {
+                            alert("There were some issues, map plugin might not work as expected.");
+                        }
+                        $("form[action='/login']").submit();
+                    });
+                });
+            });
+        })(jQuery);
+    </script>
+<% end %>
