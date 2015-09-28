@@ -21,7 +21,7 @@
                 }
             ], function (err, res) {
                 if (res[0] && res[1]) {
-                     url += "&username="+res[0]+"&password="+res[1];
+                     url += "&username="+encodeURIComponent(res[0])+"&password="+encodeURIComponent(res[1]);
                 }  else {
                     alert("Please, try to logout and then login in redmine, " +
                             "otherwise map plugin might not work as expected");
