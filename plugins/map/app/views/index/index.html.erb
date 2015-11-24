@@ -15,6 +15,9 @@
             $(iframe).attr({
                 id: "redmap-iframe",
                 src: url,
+                allowfullscreen: true,
+                mozallowfullscreen: true,
+                webkitallowfullscreen: true,
                 frameborder: 0,
                 width: "100%",
                 height: $("#content").height()+"px",
