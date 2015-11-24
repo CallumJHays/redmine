@@ -1,57 +1,40 @@
 <% html_title "Map" %>
-<% content_for :header_tags do %>
-    <%= javascript_include_tag 'localforage', :plugin => 'map' %>
-    <%= javascript_include_tag 'async.min', :plugin => 'map' %>
-<% end %>
 
 <% content_for :header_tags do %>
     <script type="text/javascript">
 
-        var url = 'https://bootlessbay.kegsys.com/static/?workpack_id=<%=@workpack_id%>&opened_apps=mapview';
+//        var url = 'https://bootlessbay.kegsys.com/static/?workpack_id=<%=@workpack_id%>&opened_apps=mapview';
+        var url = '<%=@settings['map']['iframe_url']%>/ol3/?workpack_id=<%=@workpack_id%>&opened_apps=mapview&'+
+                '&username=<%=User.current.login%>&password=BKBVTF856NLB192KWP__ffdbfdb';
         $(function () {
             $("#content").css({margin: '0px', marginRight: '0px'});
 
 
-            async.series([
-                function (clb) {
-                    localforage.getItem('redmine_username', clb);
-                },
-                function (clb) {
-                    localforage.getItem('redmine_password', clb);
-                }
-            ], function (err, res) {
-                if (res[0] && res[1]) {
-                     url += "&username="+encodeURIComponent(res[0])+"&password="+encodeURIComponent(res[1]);
-                }  else {
-                    alert("Please, try to logout and then login in redmine, " +
-                            "otherwise map plugin might not work as expected");
-                }
 
-                var iframe = document.createElement('iframe');
-                $(iframe).attr({
-                    id: "redmap-iframe",
-                    src: url,
-                    width: "100%",
-                    height: $("#content").height()+"px",
-                    border: "none"
-                });
+            var iframe = document.createElement('iframe');
+            $(iframe).attr({
+                id: "redmap-iframe",
+                src: url,
+                frameborder: 0,
+                width: "100%",
+                height: $("#content").height()+"px",
+                border: "none"
+            });
 
-                $('#content').prepend(iframe).css({
-                    "border": "none",
-                    "padding": 0
-                });
+            $('#content').prepend(iframe).css({
+                "border": "none",
+                "padding": 0
+            });
 
-                $("a.map").addClass("selected");
+            $("a.map").addClass("selected");
 
-                $("#main").css({
-                    "margin": "0 8px 0 225px",
-                    "padding": "55px 0 0 10px"
-                });
+            $("#main").css({
+                "margin": "0 8px 0 225px",
+                "padding": "55px 0 0 10px"
+            });
 
-                $("#footer").css({
-                    "margin-top": "5px"
-                });
-
+            $("#footer").css({
+                "margin-top": "5px"
             });
 
 

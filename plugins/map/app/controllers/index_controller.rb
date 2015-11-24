@@ -6,18 +6,13 @@ class IndexController < ApplicationController
 
   def index
 
-=begin
-    @test = ActiveRecord::Base.connection.execute("SELECT * from users");
-    @test.each do |tuple|
-    end
-=end
   end
 
   private
   def find_project
     # @project variable must be set before calling the authorize filter
     @project = Project.find(params[:project_id])
-    @project_geo = ''
+    @settings = TabSetting.get_settings(@project.id)
     c = 0
     custom_fields = @project.custom_field_values.each do |cf|
       if cf.custom_field.name.to_s.eql? "project_geo"
