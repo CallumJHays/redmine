@@ -9,6 +9,17 @@
         $(function () {
             $("#content").css({margin: '0px', marginRight: '0px'});
 
+            var isPixelCookers = function(){
+                var f = false;
+                $("link").each(function(){
+                    if ($(this).attr('href').indexOf('pixel-cookers') >= -1) {
+                       f = true;
+                    }
+                });
+
+                return f;
+            }
+
 
 
             var iframe = document.createElement('iframe');
@@ -32,10 +43,18 @@
 
             $("a.map").addClass("selected");
 
-            $("#main").css({
-                "margin": "0 8px 0 225px",
-                "padding": "55px 0 0 10px"
-            });
+            if (isPixelCookers()) {
+                $("#main").css({
+                    "margin": "0 8px 0 225px",
+                    "padding": "55px 0 0 10px"
+                });
+            } else {
+                $("#main").css({
+                    "margin": "0 8px 0 9px",
+                    "padding": "10px 0 0 10px"
+                });
+            }
+
 
             $("#footer").css({
                 "margin-top": "5px"
