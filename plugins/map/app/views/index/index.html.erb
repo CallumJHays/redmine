@@ -22,7 +22,9 @@
 
 
 
-            var iframe = document.createElement('iframe');
+            var
+                    h = $(document.body).outerHeight() - $("#header").outerHeight(),
+                    iframe = document.createElement('iframe');
             $(iframe).attr({
                 id: "redmap-iframe",
                 src: url,
@@ -31,7 +33,7 @@
                 webkitallowfullscreen: true,
                 frameborder: 0,
                 width: "100%",
-                height: $("#content").height()+"px",
+                height: h+"px",
                 border: "none"
             });
 
