@@ -24,7 +24,8 @@
             $('html').css({"height": "100%"});
             $('body').css({"height": "100%"});
             var
-                    h = $(document.body).outerHeight() - $("#header").outerHeight()-$("#footer").outerHeight(),
+                    h = $(document.body).outerHeight() - $("#header").outerHeight()-$("#footer").outerHeight()
+                    - $("#top-menu").outerHeight(),
                     iframe = document.createElement('iframe');
             $(iframe).attr({
                 id: "redmap-iframe",
