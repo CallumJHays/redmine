@@ -4,7 +4,7 @@
     <script type="text/javascript">
 
 //        var url = 'https://bootlessbay.kegsys.com/static/?workpack_id=<%=@workpack_id%>&opened_apps=mapview';
-        var url = '<%=@settings['map']['iframe_url']%>/ol3/?workpack_id=<%=@workpack_id%>&opened_apps=mapview&'+
+        var url = '<%=@settings['map']['iframe_url']%>/ol3/?workpack_id=<%=@workpack_id%>&opened_apps=mapview'+
                 '&username=<%=User.current.login%>&password=BKBVTF856NLB192KWP__ffdbfdb';
         if ('<%=@settings['map']['iframe_url']%>'.indexOf('apps') > -1) {
             url = '<%=@settings['map']['iframe_url']%>/?workpack_id=<%=@workpack_id%>&opened_apps=mapview'+
