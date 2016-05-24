@@ -70,6 +70,16 @@
                 "margin-top": "5px"
             });
 
+            $(window).resize(function(e){
+                setTimeout(function(){
+                    $('#content').css({width: $(window).outerWidth()+"px"});
+                    var
+                        h = window.innerHeight -$("#footer").outerHeight()
+                            - $("#top-menu").outerHeight();
+                    $(iframe).css({height: h+"px"});
+                }, 1000);
+            });
+
 
         });
     </script>
