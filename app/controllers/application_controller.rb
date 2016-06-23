@@ -124,10 +124,10 @@ class ApplicationController < ActionController::Base
       if (key = api_key_from_request)
         # Use API key
         user = User.find_by_api_key(key)
-        # session[:user_id] = user.id if user
-        # session[:ctime] = Time.now.utc.to_i
-        # session[:atime] = Time.now.utc.to_i
-        # user
+        session[:user_id] = user.id if user
+        session[:ctime] = Time.now.utc.to_i
+        session[:atime] = Time.now.utc.to_i
+        user
       elsif request.authorization.to_s =~ /\ABasic /i
         # HTTP Basic, either username/password or API key/random
         authenticate_with_http_basic do |username, password|
