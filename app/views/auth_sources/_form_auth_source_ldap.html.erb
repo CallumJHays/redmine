@@ -14,6 +14,7 @@
   <p><%= f.text_area :filter, :size => 60, :label => :field_auth_source_ldap_filter %></p>
   <p><%= f.text_field :timeout, :size => 4 %></p>
   <p><%= f.check_box :onthefly_register, :label => :field_onthefly %></p>
+  <p><%= f.check_box :enabled_passwd, :label => :field_enabled_passwd %></p>
 </div>
 
 <fieldset class="box tabular"><legend><%=l(:label_attribute_plural)%></legend>
@@ -21,4 +22,5 @@
   <p><%= f.text_field :attr_firstname, :size => 20 %></p>
   <p><%= f.text_field :attr_lastname, :size => 20 %></p>
   <p><%= f.text_field :attr_mail, :size => 20 %></p>
+  <p><%= f.select :password_encryption, AuthSourcesHelper::Encryption.encryptiontypes %></p>
 </fieldset>

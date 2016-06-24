@@ -1169,3 +1169,6 @@ en:
   description_date_from: Enter start date
   description_date_to: Enter end date
   text_repository_identifier_info: 'Only lower case letters (a-z), numbers, dashes and underscores are allowed.<br />Once saved, the identifier cannot be changed.'
+  notice_external_password_error: Error changing external password.
+  field_password_encryption: Encryption
+  field_enabled_passwd: Enabled password changing
