@@ -136,6 +136,7 @@ lv:
   general_csv_decimal_separator: '.'
   general_csv_encoding: UTF-8
   general_pdf_fontname: freesans
+  general_pdf_monospaced_fontname: freemono
   general_first_day_of_week: '1'
 
   notice_account_updated: Konts tika atjaunots veiksmīgi.
@@ -519,10 +520,6 @@ lv:
   label_open_issues_plural: atvērti
   label_closed_issues: slēgts
   label_closed_issues_plural: slēgti
-  label_x_open_issues_abbr_on_total:
-    zero:  0 atvērti / %{total}
-    one:   1 atvērts / %{total}
-    other: "%{count} atvērti / %{total}"
   label_x_open_issues_abbr:
     zero:  0 atvērti
     one:   1 atvērts
@@ -656,10 +653,6 @@ lv:
   label_blocked_by: Bloķē uzdevums
   label_precedes: Pirms
   label_follows: Seko pēc
-  label_end_to_start: no beigām uz sākumu
-  label_end_to_end: no beigām uz beigām
-  label_start_to_start: no sākuma uz sākumu
-  label_start_to_end: no sākuma uz beigām
   label_stay_logged_in: Atcerēties mani
   label_disabled: izslēgts
   label_show_completed_versions: Rādīt pabeigtās versijas
@@ -1162,7 +1155,7 @@ lv:
   label_fields_separator: Field separator
   label_fields_wrapper: Field wrapper
   label_encoding: Encoding
-  label_coma_char: Coma
+  label_comma_char: Comma
   label_semi_colon_char: Semi colon
   label_quote_char: Quote
   label_double_quote_char: Double quote
@@ -1171,3 +1164,15 @@ lv:
   label_create_missing_values: Create missing values
   button_import: Import
   field_total_estimated_hours: Total estimated time
+  label_api: API
+  label_total_plural: Totals
+  label_assigned_issues: Assigned issues
+  label_field_format_enumeration: Key/value list
+  label_f_hour_short: '%{value} h'
+  field_default_version: Default version
+  error_attachment_extension_not_allowed: Attachment extension %{extension} is not allowed
+  setting_attachment_extensions_allowed: Allowed extensions
+  setting_attachment_extensions_denied: Disallowed extensions
+  label_any_open_issues: any open issues
+  label_no_open_issues: no open issues
+  label_default_values_for_new_users: Default values for new users

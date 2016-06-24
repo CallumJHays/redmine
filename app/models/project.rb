@@ -1,5 +1,5 @@
 # Redmine - project management software
-# Copyright (C) 2006-2015  Jean-Philippe Lang
+# Copyright (C) 2006-2016  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -38,6 +38,7 @@ class Project < ActiveRecord::Base
   has_many :issues, :dependent => :destroy
   has_many :issue_changes, :through => :issues, :source => :journals
   has_many :versions, lambda {order("#{Version.table_name}.effective_date DESC, #{Version.table_name}.name DESC")}, :dependent => :destroy
+  belongs_to :default_version, :class_name => 'Version'
   has_many :time_entries, :dependent => :destroy
   has_many :queries, :class_name => 'IssueQuery', :dependent => :delete_all
   has_many :documents, :dependent => :destroy
@@ -148,7 +149,10 @@ class Project < ActiveRecord::Base
   # returns latest created projects
   # non public projects will be returned only if user is a member of those
   def self.latest(user=nil, count=5)
-    visible(user).limit(count).order("created_on DESC").to_a
+    visible(user).limit(count).
+      order(:created_on => :desc).
+      where("#{table_name}.created_on >= ?", 30.days.ago).
+      to_a
   end
 
   # Returns true if the project is visible to +user+ or to the current user.
@@ -279,8 +283,8 @@ class Project < ActiveRecord::Base
           raise ActiveRecord::Rollback, "Overriding TimeEntryActivity was not successfully saved"
         else
           self.time_entries.
-            where(["activity_id = ?", parent_activity.id]).
-            update_all("activity_id = #{project_activity.id}")
+            where(:activity_id => parent_activity.id).
+            update_all(:activity_id => project_activity.id)
         end
       end
     end
@@ -687,7 +691,8 @@ class Project < ActiveRecord::Base
     'custom_fields',
     'tracker_ids',
     'issue_custom_field_ids',
-    'parent_id'
+    'parent_id',
+    'default_version_id'
 
   safe_attributes 'enabled_module_names',
     :if => lambda {|project, user| project.new_record? || user.allowed_to?(:select_project_modules, project) }

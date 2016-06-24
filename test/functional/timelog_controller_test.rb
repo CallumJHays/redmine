@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Redmine - project management software
-# Copyright (C) 2006-2015  Jean-Philippe Lang
+# Copyright (C) 2006-2016  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -217,6 +217,23 @@ class TimelogControllerTest < ActionController::TestCase
       }
       assert_select_error /Issue is invalid/
     end
+  end
+
+  def test_create_on_issue_that_is_not_visible_should_not_disclose_subject
+    issue = Issue.generate!(:subject => "issue_that_is_not_visible", :is_private => true)
+    assert !issue.visible?(User.find(3))
+
+    @request.session[:user_id] = 3
+    assert_no_difference 'TimeEntry.count' do
+      post :create, :time_entry => {
+        :project_id => '', :issue_id => issue.id.to_s,
+        :activity_id => '11', :spent_on => '2008-03-14', :hours => '7.3'
+      }
+    end
+    assert_select_error /Issue is invalid/
+    assert_select "input[name=?][value=?]", "time_entry[issue_id]", issue.id.to_s
+    assert_select "#time_entry_issue", 0
+    assert !response.body.include?('issue_that_is_not_visible')
   end
 
   def test_create_and_continue_at_project_level
@@ -508,6 +525,15 @@ class TimelogControllerTest < ActionController::TestCase
 
     assert_response 302
     assert_equal ["0", "0"], TimeEntry.where(:id => [1, 2]).collect {|i| i.custom_value_for(10).value}
+  end
+
+  def test_bulk_update_clear_custom_field
+    field = TimeEntryCustomField.generate!(:field_format => 'string')
+    @request.session[:user_id] = 2
+    post :bulk_update, :ids => [1, 2], :time_entry => { :custom_field_values => {field.id.to_s => '__none__'} }
+
+    assert_response 302
+    assert_equal ["", ""], TimeEntry.where(:id => [1, 2]).collect {|i| i.custom_value_for(field).value}
   end
 
   def test_post_bulk_update_should_redirect_back_using_the_back_url_parameter

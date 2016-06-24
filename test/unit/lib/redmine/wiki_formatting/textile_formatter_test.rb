@@ -1,7 +1,7 @@
 #encoding: utf-8
 #
 # Redmine - project management software
-# Copyright (C) 2006-2015  Jean-Philippe Lang
+# Copyright (C) 2006-2016  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -243,6 +243,24 @@ RAW
   <tr><td>cell11</td><td>cell12</td><td></td></tr>
   <tr><td>cell21</td><td></td><td>cell23</td></tr>
   <tr><td>cell31</td><td>cell32</td><td>cell33</td></tr>
+</table>
+EXPECTED
+
+    assert_equal expected.gsub(%r{\s+}, ''), to_html(raw).gsub(%r{\s+}, '')
+  end
+
+  def test_table_with_alignment
+    raw = <<-RAW
+|>. right|
+|<. left|
+|<>. justify|
+RAW
+
+    expected = <<-EXPECTED
+<table>
+  <tr><td style="text-align:right;">right</td></tr>
+  <tr><td style="text-align:left;">left</td></tr>
+  <tr><td style="text-align:justify;">justify</td></tr>
 </table>
 EXPECTED
 

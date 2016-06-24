@@ -1,5 +1,5 @@
 # Redmine - project management software
-# Copyright (C) 2006-2015  Jean-Philippe Lang
+# Copyright (C) 2006-2016  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -990,5 +990,14 @@ class ProjectTest < ActiveSupport::TestCase
     p = Project.new
     p.status = Project::STATUS_CLOSED
     assert_include 'closed', p.css_classes.split
+  end
+
+  def test_combination_of_visible_and_uniq_scopes_in_case_anonymous_group_has_memberships_should_not_error
+    project = Project.find(1)
+    member = Member.create!(:project => project, :principal => Group.anonymous, :roles => [Role.generate!])
+    project.members << member
+    assert_nothing_raised do
+      Project.uniq.visible.to_a
+    end
   end
 end

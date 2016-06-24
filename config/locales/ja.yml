@@ -163,6 +163,7 @@ ja:
   general_csv_decimal_separator: '.'
   general_csv_encoding: CP932
   general_pdf_fontname: kozminproregular
+  general_pdf_monospaced_fontname: kozminproregular
   general_first_day_of_week: '7'
 
   notice_account_updated: アカウントが更新されました。
@@ -542,7 +543,7 @@ ja:
   label_subproject_new: 新しいサブプロジェクト
   label_and_its_subprojects: "%{value} とサブプロジェクト"
   label_min_max_length: 最短 - 最大長
-  label_list: リストから選択
+  label_list: リスト
   label_date: 日付
   label_integer: 整数
   label_float: 小数
@@ -582,10 +583,6 @@ ja:
   label_open_issues_plural: 未完了
   label_closed_issues: 完了
   label_closed_issues_plural: 完了
-  label_x_open_issues_abbr_on_total:
-    zero:  0件未完了 / 全%{total}件
-    one:   1件未完了 / 全%{total}件
-    other: "%{count}件未完了 / 全%{total}件"
   label_x_open_issues_abbr:
     zero:  0件未完了
     one:   1件未完了
@@ -718,14 +715,10 @@ ja:
   label_relates_to: 関連している
   label_duplicates: 次のチケットと重複
   label_duplicated_by: 次のチケットが重複
-  label_blocks: ブロックしている
-  label_blocked_by: ブロックされている
+  label_blocks: ブロック先
+  label_blocked_by: ブロック元
   label_precedes: 次のチケットに先行
   label_follows: 次のチケットに後続
-  label_end_to_start: 最後-最初
-  label_end_to_end: 最後-最後
-  label_start_to_start: 最初-最初
-  label_start_to_end: 最初-最後
   label_stay_logged_in: ログインを維持
   label_disabled: 無効
   label_show_completed_versions: 完了したバージョンを表示
@@ -929,7 +922,7 @@ ja:
   text_destroy_time_entries: 記録された作業時間を含めて削除
   text_assign_time_entries_to_project: 記録された作業時間をプロジェクト自体に割り当て
   text_reassign_time_entries: '記録された作業時間をこのチケットに再割り当て：'
-  text_user_wrote: "%{value} は書きました:"
+  text_user_wrote: "%{value} さんは書きました:"
   text_enumeration_destroy_question: "%{count}個のオブジェクトがこの値に割り当てられています。"
   text_enumeration_category_reassign_to: '次の値に割り当て直す:'
   text_email_delivery_not_configured: "メールを送信するために必要な設定が行われていないため、メール通知は利用できません。\nconfig/configuration.ymlでSMTPサーバの設定を行い、アプリケーションを再起動してください。"
@@ -1181,7 +1174,7 @@ ja:
   label_fields_separator: 区切り文字
   label_fields_wrapper: 文字列の引用符
   label_encoding: エンコーディング
-  label_coma_char: コンマ
+  label_comma_char: コンマ
   label_semi_colon_char: セミコロン
   label_quote_char: シングルクォート
   label_double_quote_char: ダブルクォート
@@ -1190,3 +1183,15 @@ ja:
   label_create_missing_values: 存在しない値は新規作成
   button_import: インポート
   field_total_estimated_hours: 合計予定工数
+  label_api: API
+  label_total_plural: 合計
+  label_assigned_issues: 担当しているチケット
+  label_field_format_enumeration: キー・バリュー リスト
+  label_f_hour_short: '%{value}時間'
+  field_default_version: デフォルトのバージョン
+  error_attachment_extension_not_allowed: 拡張子が %{extension} のファイルの添付は禁止されています
+  setting_attachment_extensions_allowed: 許可する拡張子
+  setting_attachment_extensions_denied: 禁止する拡張子
+  label_any_open_issues: 未完了のチケット
+  label_no_open_issues: なし または完了したチケット
+  label_default_values_for_new_users: 新しいユーザーのデフォルト設定

@@ -1,5 +1,5 @@
 # Redmine - project management software
-# Copyright (C) 2006-2015  Jean-Philippe Lang
+# Copyright (C) 2006-2016  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -49,7 +49,7 @@ module Redmine
     end
 
     def l_hours_short(hours)
-      "%.2f h" % hours.to_f
+      l(:label_f_hour_short, :value => ("%.2f" % hours.to_f))
     end
 
     def ll(lang, str, arg=nil)

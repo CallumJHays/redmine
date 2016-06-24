@@ -1,5 +1,5 @@
 # Redmine - project management software
-# Copyright (C) 2006-2015  Jean-Philippe Lang
+# Copyright (C) 2006-2016  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -28,8 +28,7 @@ class Principal < ActiveRecord::Base
   has_many :memberships,
            lambda {preload(:project, :roles).
                    joins(:project).
-                   where("#{Project.table_name}.status<>#{Project::STATUS_ARCHIVED}").
-                   order("#{Project.table_name}.name")},
+                   where("#{Project.table_name}.status<>#{Project::STATUS_ARCHIVED}")},
            :class_name => 'Member',
            :foreign_key => 'user_id'
   has_many :projects, :through => :memberships

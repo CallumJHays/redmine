@@ -226,6 +226,7 @@
   general_csv_decimal_separator: '.'
   general_csv_encoding: Big5
   general_pdf_fontname: msungstdlight
+  general_pdf_monospaced_fontname: msungstdlight
   general_first_day_of_week: '7'
 
   notice_account_updated: 帳戶更新資訊已儲存
@@ -294,6 +295,7 @@
   error_invalid_file_encoding: "這個檔案不是一個有效的 %{encoding} 編碼檔案"
   error_invalid_csv_file_or_settings: "這個檔案不是一個 CSV 檔案，或是未符合下面所列之設定值"
   error_can_not_read_import_file: "讀取匯入檔案時發生錯誤"
+  error_attachment_extension_not_allowed: "附件之附檔名不允許使用 %{extension}"
 
   mail_subject_lost_password: 您的 Redmine 網站密碼
   mail_body_lost_password: '欲變更您的 Redmine 網站密碼, 請點選以下鏈結:'
@@ -432,6 +434,8 @@
   field_default_status: 預設狀態
   field_users_visibility: 用戶可見度
   field_time_entries_visibility: 工時紀錄可見度
+  field_total_estimated_hours: 預估工時總計
+  field_default_version: 預設版本
 
   setting_app_title: 標題
   setting_app_subtitle: 副標題
@@ -509,6 +513,8 @@
   setting_link_copied_issue: 複製時連結議題
   setting_max_additional_emails: 其他電子郵件地址的最大值
   setting_search_results_per_page: 每一頁的搜尋結果數目
+  setting_attachment_extensions_allowed: 允許使用的附檔名
+  setting_attachment_extensions_denied: 禁止使用的副檔名
 
   permission_add_project: 建立專案
   permission_add_subprojects: 建立子專案
@@ -656,6 +662,7 @@
   label_logout: 登出
   label_help: 說明
   label_reported_issues: 我通報的議題
+  label_assigned_issues: 我被分派的議題
   label_assigned_to_me_issues: 分派給我的議題
   label_last_login: 最近一次連線
   label_registered_on: 註冊於
@@ -713,10 +720,6 @@
   label_open_issues_plural: 進行中
   label_closed_issues: 已結束
   label_closed_issues_plural: 已結束
-  label_x_open_issues_abbr_on_total:
-    zero:  0 進行中 / 共 %{total}
-    one:   1 進行中 / 共 %{total}
-    other: "%{count} 進行中 / 共 %{total}"
   label_x_open_issues_abbr:
     zero:  0 進行中
     one:   1 進行中
@@ -730,6 +733,7 @@
     one:   1 個議題
     other: "%{count} 個議題"
   label_total: 總計
+  label_total_plural: 總計
   label_total_time: 工時總計
   label_permissions: 權限
   label_current_status: 目前狀態
@@ -794,6 +798,8 @@
   label_any_issues_in_project: 在專案中的任意議題
   label_any_issues_not_in_project: 不在專案中的任意議題
   label_no_issues_in_project: 沒有議題在專案中
+  label_any_open_issues: 任意進行中之議題
+  label_no_open_issues: 任意非進行中之議題
   label_day_plural: 天
   label_repository: 儲存機制
   label_repository_new: 建立新儲存機制
@@ -839,9 +845,11 @@
   label_changes_details: 所有變更的明細
   label_issue_tracking: 議題追蹤
   label_spent_time: 耗用工時
+  label_total_spent_time: 耗用工時總計
   label_overall_spent_time: 整體耗用工時
   label_f_hour: "%{value} 小時"
   label_f_hour_plural: "%{value} 小時"
+  label_f_hour_short: "%{value} 小時"
   label_time_tracking: 工時追蹤
   label_change_plural: 變更
   label_statistics: 統計資訊
@@ -869,10 +877,6 @@
   label_follows: 跟隨於
   label_copied_to: 複製到
   label_copied_from: 複製於
-  label_end_to_start: 結束─開始
-  label_end_to_end: 結束─結束
-  label_start_to_start: 開始─開始
-  label_start_to_end: 開始─結束
   label_stay_logged_in: 維持已登入狀態
   label_disabled: 關閉
   label_show_completed_versions: 顯示已完成的版本
@@ -1047,13 +1051,16 @@
   label_fields_separator: 欄位分隔符號
   label_fields_wrapper: 欄位包裝識別符號
   label_encoding: 編碼
-  label_coma_char: 逗號(,)
+  label_comma_char: 逗號(,)
   label_semi_colon_char: 分號(;)
   label_quote_char: 引號(')
   label_double_quote_char: 雙引號(")
   label_fields_mapping: 欄位對應
   label_file_content_preview: 檔案內容預覽
   label_create_missing_values: 建立缺少的數值
+  label_api: API
+  label_field_format_enumeration: 鍵/值 清單
+  label_default_values_for_new_users: 新用戶使用之預設值
 
   button_login: 登入
   button_submit: 送出
@@ -1249,5 +1256,3 @@
   description_date_from: 輸入起始日期
   description_date_to: 輸入結束日期
   text_repository_identifier_info: '僅允許使用小寫英文字母 (a-z), 阿拉伯數字, 虛線與底線。<br />一旦儲存之後, 代碼便無法再次被更改。'
-  label_total_spent_time: 整體耗用工時
-  field_total_estimated_hours: Total estimated time
