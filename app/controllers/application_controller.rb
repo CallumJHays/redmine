@@ -113,9 +113,9 @@ class ApplicationController < ActionController::Base
         # Use API key
         user = User.find_by_api_key(key)
         # logger.info("  API KEY : #{key}")
-        if user
-          start_user_session(user)
-        end
+        # if user
+        #   start_user_session(user)
+        # end
         # session[:user_id] = user.id if user
         # session[:ctime] = Time.now.utc.to_i
         # session[:atime] = Time.now.utc.to_i
@@ -137,6 +137,7 @@ class ApplicationController < ActionController::Base
           logger.info("  User switched by: #{user.login} (id=#{user.id})") if logger
           user = su
         else
+          logger.info("Invalid X-Redmine-Switch-User header check proxy #{request.headers["X-Redmine-Switch-User"].to_s}")
           render_error :message => 'Invalid X-Redmine-Switch-User header', :status => 412
         end
       end
