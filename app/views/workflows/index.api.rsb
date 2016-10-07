@@ -1,0 +1,8 @@
+api.array :trackers do
+  @trackers.each do |tracker|
+    api.tracker do
+        api.tracker_id tracker[:tracker_id]
+        api.workflow_status_id_map tracker[:workflow_status_id_map]
+    end
+  end
+end

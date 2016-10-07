@@ -18,12 +18,45 @@
 class WorkflowsController < ApplicationController
   layout 'admin'
 
-  before_filter :require_admin
+  before_filter :require_admin, :except => :index
+  before_filter :require_admin_or_api_request, :only => :index
 
   def index
-    @roles = Role.sorted.select(&:consider_workflow?)
-    @trackers = Tracker.sorted
-    @workflow_counts = WorkflowTransition.group(:tracker_id, :role_id).count
+    respond_to do |format|
+      format.html {
+        @roles = Role.sorted.select(&:consider_workflow?)
+        @trackers = Tracker.sorted
+        @workflow_counts = WorkflowTransition.group(:tracker_id, :role_id).count
+      }
+      format.api {
+        if params[:tracker_ids]
+          tracker_ids = params[:tracker_ids].split(',')
+          workflows = WorkflowTransition.where(:tracker_id => tracker_ids).uniq
+        else
+          workflows = WorkflowTransition.all.uniq
+        end
+
+        trackerMap = {}
+        workflows.each do |workflow|
+          # if the trackermap doesnt have the workflow tracker_id key
+          if not trackerMap.key? workflow.tracker_id
+            trackerMap[workflow.tracker_id] = {}
+          end
+          if not trackerMap[workflow.tracker_id].key? workflow.old_status_id
+            trackerMap[workflow.tracker_id][workflow.old_status_id] = Set.new
+          end
+          trackerMap[workflow.tracker_id][workflow.old_status_id].add(workflow.new_status_id)
+        end
+        @trackers = []
+        trackerMap.each do |tracker_id, workflow_status_id_map|
+          @trackers.push({
+              tracker_id: tracker_id,
+              workflow_status_id_map: workflow_status_id_map
+           })
+        end
+        p 'TRACKERSSS', @trackers
+      }
+    end
   end
 
   def edit
