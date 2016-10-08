@@ -54,7 +54,6 @@ class WorkflowsController < ApplicationController
               workflow_status_id_map: workflow_status_id_map
            })
         end
-        p 'TRACKERSSS', @trackers
       }
     end
   end
